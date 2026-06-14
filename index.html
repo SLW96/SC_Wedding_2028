@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Sophie & Casey</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --text-formal: #2B2A28;
+            --text-muted: #66615C;
+            --accent-gold: #C5A059;
+            --tab-active-bg: #F5EFE4;
+            --font-display: 'Cinzel', serif;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-formal);
+            font-family: var(--font-serif);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Fixed Navigation Tab Bar */
+        .nav-tabs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(253, 251, 247, 0.95);
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.02);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding: 20px 30px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .tab-btn.active {
+            color: var(--text-formal);
+            border-bottom: 2px solid var(--accent-gold);
+            background-color: var(--tab-active-bg);
+        }
+
+        /* Main Content Wrapper with Elegant Wildflower Borders */
+        .wrapper {
+            margin-top: 62px; /* Spacing for fixed nav bar */
+            flex: 1;
+            padding: 60px 20px;
+            background-image: 
+                url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=600'), /* Left Wildflower cluster placeholder */
+                url('https://images.unsplash.com/photo-1533616688419-b7a585564566?q=80&w=600'); /* Right Wildflower cluster placeholder */
+            background-position: left center, right center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Standard Canva-Style Center Container Card */
+        .content-card {
+            background-color: rgba(255, 255, 255, 0.96);
+            width: 100%;
+            max-width: 750px;
+            padding: 60px 50px;
+            border-radius: 4px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.03);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            text-align: center;
+        }
+
+        /* Tab Content Control */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Formal Text Layouts */
+        .invitation-text {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .names {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            color: var(--text-formal);
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .date-display {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* RSVP Form Styles */
+        .rsvp-section {
+            margin-top: 50px;
+            border-top: 1px dashed rgba(197, 160, 89, 0.3);
+            padding-top: 40px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-formal);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #DFD9D0;
+            background-color: #FFF;
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            border-radius: 2px;
+            color: var(--text-formal);
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-top: 5px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            cursor: pointer;
+        }
+
+        .radio-option input {
+            accent-color: var(--accent-gold);
+            transform: scale(1.1);
+        }
+
+        button {
+            background-color: var(--text-formal);
+            color: #FFF;
+            border: none;
+            padding: 16px;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--accent-gold);
+        }
+
+        /* Itinerary & Menu Elements */
+        .itinerary-item, .menu-course {
+            margin-bottom: 35px;
+        }
+        
+        .itinerary-time {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+        }
+
+        .itinerary-item h4, .menu-course h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin: 5px 0;
+        }
+
+        .menu-desc, .itinerary-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* FAQ & Accommodation Layout */
+        .faq-block {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .faq-block h4 {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .faq-block p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive UI Fixes */
+        @media (max-width: 768px) {
+            .wrapper {
+                background-image: none; /* Removes heavy floral side images on tight mobile panels */
+                padding: 30px 15px;
+            }
+            .content-card { padding: 40px 20px; }
+            .names { font-size: 2.4rem; }
+            .tab-btn { padding: 15px 12px; font-size: 0.75rem; letter-spacing: 1px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab-celebration')">Our Celebration</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-itinerary')">Itinerary & Menu</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab-details')">Details & Accommodation</button>
+    </nav>
+
+    <div class="wrapper">
+        <div class="content-card">
+
+            <div id="tab-celebration" class="tab-content active">
+                <p class="invitation-text">We invite you to celebrate the wedding of</p>
+                <h1 class="names">Sophie & Casey</h1>
+                <div class="date-display">Saturday 15th July 2028</div>
+                
+                <div class="rsvp-section">
+                    <h2>Kindly Reply</h2>
+                    <form id="rsvpForm" action="YOUR_GOOGLE_SCRIPT_URL_HERE" method="POST">
+                        <div class="form-group">
+                            <label for="guest-names">Name(s)</label>
+                            <input type="text" id="guest-names" name="names" required placeholder="Full names of all guests attending">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Will you attend?</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="attendance" value="Attending" required> Attending
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="attendance" value="Declining"> Declining
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dietary">Dietary Requirements</label>
+                            <textarea id="dietary" name="dietary" rows="3" placeholder="Please mention any structural food allergies, vegetarian, or vegan preferences."></textarea>
+                        </div>
+
+                        <button type="submit">Submit RSVP</button>
+                    </form>
+                    <div id="thankYouMessage" style="display:none; color: var(--accent-gold); margin-top:20px; font-size:1.2rem;">
+                        Thank you! Your response has been saved to our guest list spreadsheet.
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-itinerary" class="tab-content">
+                <h2>The Day's Itinerary</h2>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">2:00 PM</div>
+                    <h4>The Ceremony</h4>
+                    <p>An outdoor celebration of vows surrounded by the garden wildflowers.</p>
+                </div>
+                <div class="itinerary-item">
+                    <div class="itinerary-time">4:00 PM</div>
+                    <h4>Drinks & Dinner</h4>
+                    <p>Cocktails on the lawn followed by a curated wedding breakfast menu.</p>
+                </div>
+                <div class="itinerary-item">
+                    <div class="itinerary-time">7:00 PM</div>
+                    <h4>Carriages & Carousing</h4>
+                    <p>Evening reception, musical dance floors, and memory making.</p>
+                </div>
+
+                <h2 style="margin-top: 60px;">The Menu</h2>
+                <div class="menu-course">
+                    <h4>To Begin</h4>
+                    <p class="menu-desc">Roasted heritage tomato tartlet served with fresh basil pesto oil and micro herbs.</p>
+                </div>
+                <div class="menu-course">
+                    <h4>The Main</h4>
+                    <p class="menu-desc">Slow-roasted corn-fed chicken breast with truffle mash, summer greens, and a crisp jus.</p>
+                </div>
+                <div class="menu-course">
+                    <h4>To Finish</h4>
+                    <p class="menu-desc">Artisanal lemon tart accompanied by soft raspberry clotted cream and candied zest.</p>
+                </div>
+            </div>
+
+            <div id="tab-details" class="tab-content">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-block">
+                    <h4>What is the dress code?</h4>
+                    <p>We would love for our guests to dress in formal attire suitable for a beautiful summer country garden setting.</p>
+                </div>
+                <div class="faq-block">
+                    <h4>Can I bring a plus one?</h4>
+                    <p>Due to capacity constraints at our venue, we are only able to accommodate guests explicitly named on the invitation.</p>
+                </div>
+
+                <h2 style="margin-top: 60px;">Local Accommodation</h2>
+                <div class="faq-block">
+                    <h4>The Rose & Crown Country Manor</h4>
+                    <p>Located a brief 10-minute drive from the wedding venue. Elegant classic boutique lodging. Rooms can be booked directly via their primary reservation desk.</p>
+                </div>
+                <div class="faq-block">
+                    <h4>Meadow View Premium Inn</h4>
+                    <p>A reliable, highly structured modern option close to local travel lines, situated roughly 15 minutes away from our venue spaces.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchTab(event, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+
+        // JavaScript to capture the form submit and pass data seamlessly into Google Sheets
+        const form = document.getElementById('rsvpForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const url = form.action;
+            
+            // Basic URL catch guard check
+            if(url.includes("YOUR_GOOGLE_SCRIPT_URL_HERE")) {
+                alert("Almost ready! To connect your RSVP to your spreadsheet live, follow the short Google Script Guide below.");
+                return;
+            }
+
+            const data = new FormData(form);
+            fetch(url, { method: 'POST', body: data })
+                .then(response => {
+                    form.style.display = 'none';
+                    document.getElementById('thankYouMessage').style.display = 'block';
+                })
+                .catch(error => console.error('Error sending RSVP form data:', error));
+        });
+    </script>
+</body>
+</html>
